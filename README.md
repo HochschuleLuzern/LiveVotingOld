@@ -26,7 +26,7 @@
  
 ## Documentation
 
-https://github.com/fluxapps/LiveVoting/blob/master/doc/Documentation.pdf
+https://github.com/livevoting-ilias/LiveVoting/blob/main/doc/Documentation.pdf
  
 ## Installation
 
