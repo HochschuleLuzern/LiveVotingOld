@@ -57,7 +57,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     /**
      *
      */
-    protected function afterConstructor()
+    protected function afterConstructor(): void
     {
 
     }
@@ -66,7 +66,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     /**
      * @return string
      */
-    public final function getType()
+    public final function getType(): string
     {
         return ilLiveVotingPlugin::PLUGIN_ID;
     }
@@ -115,7 +115,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     /**
      * @throws ilCtrlException
      */
-    public function executeCommand()
+    public function executeCommand(): void
     {
         $this->initHeaderAndLocator();
 
@@ -220,7 +220,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     /**
      *
      */
-    protected function performCommand()
+    public function performCommand($cmd = null): void
     {
         self::dic()->help()->setScreenIdComponent(ilLiveVotingPlugin::PLUGIN_ID);
 
@@ -240,7 +240,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     /**
      * @return string
      */
-    public function getAfterCreationCmd()
+    public function getAfterCreationCmd(): string
     {
         return self::CMD_AFTER_CREATION;
     }
@@ -249,7 +249,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     /**
      * @return string
      */
-    public function getStandardCmd()
+    public function getStandardCmd(): string
     {
         return self::CMD_STANDARD;
     }
@@ -258,7 +258,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     /**
      *
      */
-    protected function setTabs()
+    protected function setTabs(): void
     {
         self::dic()->tabs()->addTab(self::TAB_CONTENT, self::plugin()->translate(self::TAB_CONTENT), self::dic()->ctrl()
             ->getLinkTargetByClass(xlvoPlayerGUI::class, xlvoPlayerGUI::CMD_STANDARD));
@@ -270,8 +270,6 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
                 ->getLinkTargetByClass(xlvoResultsGUI::class, xlvoResultsGUI::CMD_SHOW));
         }
         parent::setTabs();
-
-        return true;
     }
 
 
@@ -321,7 +319,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     public function editProperties()
     {
         if (!ilObjLiveVotingAccess::hasWriteAccess()) {
-            ilUtil::sendFailure(self::plugin()->translate('obj_permission_denied'), true);
+            ilObjLiveVotingPlugin::sendFailure(self::plugin()->translate('obj_permission_denied'), true);
             self::dic()->ctrl()->redirect($this, self::CMD_STANDARD);
         } else {
             self::dic()->tabs()->activateTab(self::TAB_EDIT);
@@ -337,7 +335,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
      *
      * @return array
      */
-    protected function initCreationForms($a_new_type)
+    protected function initCreationForms($a_new_type): array
     {
         $forms = array(
             self::CFORM_NEW   => $this->initCreateForm($a_new_type),
@@ -353,7 +351,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
      *
      * @return ilPropertyFormGUI
      */
-    public function initCreateForm($a_new_type)
+    public function initCreateForm($a_new_type): \ilPropertyFormGUI
     {
         $form = parent::initCreateForm($a_new_type);
         $form->setPreventDoubleSubmission(false);
@@ -369,7 +367,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     {
 
         if (!ilObjLiveVotingAccess::hasWriteAccess()) {
-            ilUtil::sendFailure(self::plugin()->translate('obj_permission_denied'), true);
+            ilObjLiveVotingPlugin::sendFailure(self::plugin()->translate('obj_permission_denied'), true);
         } else {
             $this->form = new ilPropertyFormGUI();
             $this->form->setTitle(self::plugin()->translate('obj_edit_properties'));
@@ -466,7 +464,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     public function updateProperties()
     {
         if (!ilObjLiveVotingAccess::hasWriteAccess()) {
-            ilUtil::sendFailure(self::plugin()->translate('obj_permission_denied_write'), true);
+            ilObjLiveVotingPlugin::sendFailure(self::plugin()->translate('obj_permission_denied_write'), true);
         } else {
             self::dic()->tabs()->activateTab(self::TAB_EDIT);
             $this->initPropertiesForm();
@@ -499,7 +497,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
                 $config->setShowAttendees($this->form->getInput(xlvoVotingConfig::F_SHOW_ATTENDEES));
 
                 $config->store();
-                ilUtil::sendSuccess(self::plugin()->translate('obj_msg_properties_form_saved'), true);
+                ilObjLiveVotingPlugin::sendSuccess(self::plugin()->translate('obj_msg_properties_form_saved'), true);
                 self::dic()->ctrl()->redirect($this, self::CMD_EDIT);
             }
 
@@ -537,7 +535,7 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     /**
      * Goto redirection
      */
-    public static function _goto($a_target)
+    public static function _goto($a_target): void
     {
         if (preg_match("/[\\d]*_pin_([\\w]*)/", $a_target[0], $matches)) {
             xlvoInitialisation::saveContext(xlvoInitialisation::CONTEXT_ILIAS);
@@ -579,19 +577,19 @@ class ilObjLiveVotingGUI extends ilObjectPluginGUI implements ilDesktopItemHandl
     /**
      *
      */
-    public function addToDeskObject()
+    public function addToDeskObject(): void
     {
         ilDesktopItemGUI::addToDesktop();
-        ilUtil::sendSuccess(self::dic()->language()->txt("added_to_desktop"));
+        ilObjLiveVotingPlugin::sendSuccess(self::dic()->language()->txt("added_to_desktop"));
     }
 
 
     /**
      *
      */
-    public function removeFromDeskObject()
+    public function removeFromDeskObject(): void
     {
         ilDesktopItemGUI::removeFromDesktop();
-        ilUtil::sendSuccess(self::dic()->language()->txt("removed_from_desktop"));
+        ilObjLiveVotingPlugin::sendSuccess(self::dic()->language()->txt("removed_from_desktop"));
     }
 }

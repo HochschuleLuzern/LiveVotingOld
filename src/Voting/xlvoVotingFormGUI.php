@@ -22,6 +22,7 @@ use srag\CustomInputGUIs\LiveVoting\TextInputGUI\TextInputGUI;
 use srag\DIC\LiveVoting\DICTrait;
 use xlvoVotingGUI;
 use ILIAS\DI\Container;
+use ilHtmlPurifierFactory;
 
 /**
  * Class xlvoVotingFormGUI
@@ -145,6 +146,7 @@ class xlvoVotingFormGUI extends ilPropertyFormGUI
             'img',
         ));
         $te->usePurifier(true);
+        $te->setPurifier(ilHtmlPurifierFactory::getInstanceByType('frm_post'));
         $te->disableButtons(array(
             'charmap',
             'undo',
@@ -218,7 +220,7 @@ class xlvoVotingFormGUI extends ilPropertyFormGUI
 
         $this->setValuesByArray($array);
         if ($this->voting->getVotingStatus() == xlvoVoting::STAT_INCOMPLETE) {
-            ilUtil::sendInfo($this->parent_gui->txt('msg_voting_not_complete'), false);
+            ilLiveVotingPlugin::sendInfo($this->parent_gui->txt('msg_voting_not_complete'), false);
         }
     }
 
@@ -249,7 +251,7 @@ class xlvoVotingFormGUI extends ilPropertyFormGUI
 
             return true;
         } catch (xlvoSubFormGUIHandleFieldException $ex) {
-            ilUtil::sendFailure($ex->getMessage(), true);
+            ilLiveVotingPlugin::sendFailure($ex->getMessage(), true);
 
             return false;
         }
@@ -270,7 +272,7 @@ class xlvoVotingFormGUI extends ilPropertyFormGUI
             $this->voting->store();
             xlvoSubFormGUI::getInstance($this->getVoting())->handleAfterCreation($this->voting);
         } else {
-            ilUtil::sendFailure($this->parent_gui->txt('permission_denied_object'), true);
+            ilLiveVotingPlugin::sendFailure($this->parent_gui->txt('permission_denied_object'), true);
             self::dic()->ctrl()->redirect($this->parent_gui, xlvoVotingGUI::CMD_STANDARD);
         }
 

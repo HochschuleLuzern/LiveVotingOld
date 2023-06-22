@@ -154,7 +154,7 @@ class xlvoResultsGUI extends xlvoGUI
         $newRound->setObjId($this->obj_id);
         $newRound->store();
         self::dic()->ctrl()->setParameter($this, 'round_id', xlvoRound::getLatestRound($this->obj_id)->getId());
-        ilUtil::sendSuccess(self::plugin()->translate("common_new_round_created"), true);
+        ilLiveVotingPlugin::sendSuccess(self::plugin()->translate("common_new_round_created"), true);
         self::dic()->ctrl()->redirect($this, self::CMD_SHOW);
     }
 

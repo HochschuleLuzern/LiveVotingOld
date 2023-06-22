@@ -10,7 +10,7 @@ use srag\DIC\LiveVoting\DICTrait;
  *
  * @author             Fabian Schmid <fs@studer-raimann.ch>
  *
- * @ilCtrl_IsCalledBy  ilLiveVotingConfigGUI: ilObjComponentSettingsGUIs
+ * @ilCtrl_IsCalledBy ilLiveVotingConfigGUI: ilObjComponentSettingsGUI
  */
 class ilLiveVotingConfigGUI extends ilPluginConfigGUI
 {
@@ -22,11 +22,11 @@ class ilLiveVotingConfigGUI extends ilPluginConfigGUI
 
     public function __construct()
     {
-
+echo "ilLiveVotingConfigGUI __construct";
     }
 
 
-    public function executeCommand()
+    public function executeCommand(): void
     {
         // TODO: Refactoring
         self::dic()->ctrl()->setParameterByClass(ilObjComponentSettingsGUI::class, "ctype", $_GET["ctype"]);
@@ -62,7 +62,7 @@ class ilLiveVotingConfigGUI extends ilPluginConfigGUI
     }
 
 
-    public function performCommand($cmd)
+    public function performCommand($cmd) : void
     {
     }
 }

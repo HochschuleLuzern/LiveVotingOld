@@ -134,7 +134,7 @@ class xlvoVotingTableGUI extends ilTable2GUI
     /**
      * @param array $a_set
      */
-    public function fillRow($a_set)
+    public function fillRow($a_set): void
     {
         /**
          * @var xlvoVoting $xlvoVoting
@@ -146,7 +146,7 @@ class xlvoVotingTableGUI extends ilTable2GUI
         $question = strip_tags($xlvoVoting->getQuestion());
 
         $question = $this->shorten($question);
-        $this->tpl->setVariable('QUESTION', ilUtil::prepareTextareaOutput($question, true));
+        $this->tpl->setVariable('QUESTION', ilLegacyFormElementsUtil::prepareTextareaOutput($question, true));
         $this->tpl->setVariable('TYPE', $this->txt('type_' . $xlvoVoting->getVotingType()));
 
         $voting_status = $this->getVotingStatus($xlvoVoting->getVotingStatus());

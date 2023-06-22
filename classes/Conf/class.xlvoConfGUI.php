@@ -70,7 +70,7 @@ class xlvoConfGUI extends xlvoGUI
         $xlvoConfFormGUI = new xlvoConfFormGUI($this);
         $xlvoConfFormGUI->setValuesByPost();
         if ($xlvoConfFormGUI->saveObject()) {
-            ilUtil::sendSuccess($this->txt('msg_success'), true);
+            ilLiveVotingPlugin::sendSuccess($this->txt('msg_success'), true);
             self::dic()->ctrl()->redirect($this, self::CMD_STANDARD);
         }
         self::dic()->ui()->mainTemplate()->setContent($xlvoConfFormGUI->getHTML());

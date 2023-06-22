@@ -177,7 +177,8 @@ class xlvoVotingManager2
     protected function input($input, $vote_id)
     {
         $options = $this->getOptions();
-        $option = array_shift(array_values($options));
+        $options_values = array_values($options);
+        $option = array_shift($options_values);
         if (!$option instanceof xlvoOption) {
             throw new xlvoVotingManagerException('No Option given');
         }
@@ -220,7 +221,8 @@ class xlvoVotingManager2
     public function addInput($input)
     {
         $options = $this->getOptions();
-        $option = array_shift(array_values($options));
+        $options_values = array_values($options);
+        $option = array_shift($options_values);
         if (!$option instanceof xlvoOption) {
             throw new xlvoVotingManagerException('No Option given');
         }
@@ -321,7 +323,8 @@ class xlvoVotingManager2
     public function getFirstVoteOfUser($incl_inactive = false)
     {
         $xlvoVotes = $this->getVotesOfUser($incl_inactive);
-        $xlvoVote = array_shift(array_values($xlvoVotes));
+        $xlvoVotes_values = array_values($xlvoVotes);
+        $xlvoVote = array_shift($xlvoVotes_values);
 
         return ($xlvoVote instanceof xlvoVote) ? $xlvoVote : new xlvoVote();
     }
@@ -382,7 +385,8 @@ class xlvoVotingManager2
             return;
         }
         $prev_id = $this->getVotingsList('DESC')->where(array('position' => $this->voting->getPosition()), '<')->limit(0, 1)->getArray('id', 'id');
-        $prev_id = array_shift(array_values($prev_id));
+        $prev_id_values = array_values($prev_id);
+        $prev_id = array_shift($prev_id_values);
         $this->handleQuestionSwitching();
 
         $this->player->setActiveVoting($prev_id);
@@ -400,7 +404,8 @@ class xlvoVotingManager2
             return;
         }
         $next_id = $this->getVotingsList()->where(array('position' => $this->voting->getPosition()), '>')->limit(0, 1)->getArray('id', 'id');
-        $next_id = array_shift(array_values($next_id));
+        $next_id_values = array_values($next_id);
+        $next_id = array_shift($next_id_values);
         $this->handleQuestionSwitching();
         $this->player->setActiveVoting($next_id);
         $this->player->store();

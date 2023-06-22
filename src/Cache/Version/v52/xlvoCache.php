@@ -36,7 +36,7 @@ class xlvoCache extends ilGlobalCache implements xlvoCacheService, Initialisable
     /**
      * @var array
      */
-    protected static $active_components
+    protected static array $active_components
         = array(
             ilLiveVotingPlugin::PLUGIN_ID,
         );
@@ -47,7 +47,7 @@ class xlvoCache extends ilGlobalCache implements xlvoCacheService, Initialisable
      *
      * @return xlvoCache
      */
-    public static function getInstance($component)
+    public static function getInstance($component): \ilGlobalCache
     {
         $service_type = self::getSettings()->getService();
         $xlvoCache = new self($service_type);
@@ -71,7 +71,7 @@ class xlvoCache extends ilGlobalCache implements xlvoCacheService, Initialisable
     }
 
 
-    protected function initCachingService()
+    protected function initCachingService(): void
     {
         /**
          * @var ilGlobalCacheService $ilGlobalCacheService
@@ -118,7 +118,7 @@ class xlvoCache extends ilGlobalCache implements xlvoCacheService, Initialisable
      *
      * @return string
      */
-    public static function lookupServiceClassName($service_type)
+    public static function lookupServiceClassName($service_type): string
     {
         switch ($service_type) {
             case self::TYPE_APC:
@@ -126,9 +126,6 @@ class xlvoCache extends ilGlobalCache implements xlvoCacheService, Initialisable
                 break;
             case self::TYPE_MEMCACHED:
                 return ilMemcache::class;
-                break;
-            case self::TYPE_XCACHE:
-                return ilXcache::class;
                 break;
             case self::TYPE_STATIC:
                 return ilStaticCache::class;
@@ -143,7 +140,7 @@ class xlvoCache extends ilGlobalCache implements xlvoCacheService, Initialisable
     /**
      * @return array
      */
-    public static function getActiveComponents()
+    public static function getActiveComponents(): array
     {
         return self::$active_components;
     }
@@ -155,7 +152,7 @@ class xlvoCache extends ilGlobalCache implements xlvoCacheService, Initialisable
      * @return bool
      * @throws RuntimeException
      */
-    public function flush($complete = false)
+    public function flush($complete = false): bool
     {
         if (!$this->global_cache instanceof ilGlobalCacheService || !$this->isActive()) {
             return false;
@@ -173,7 +170,7 @@ class xlvoCache extends ilGlobalCache implements xlvoCacheService, Initialisable
      * @return bool
      * @throws RuntimeException
      */
-    public function delete($key)
+    public function delete($key): bool
     {
         if (!$this->global_cache instanceof ilGlobalCacheService || !$this->isActive()) {
             return false;
@@ -186,7 +183,7 @@ class xlvoCache extends ilGlobalCache implements xlvoCacheService, Initialisable
     /**
      * @return bool
      */
-    public function isActive()
+    public function isActive(): bool
     {
         return self::isOverrideActive();
     }
@@ -217,7 +214,7 @@ class xlvoCache extends ilGlobalCache implements xlvoCacheService, Initialisable
      *
      * @return bool              True if the cache entry was set otherwise false.
      */
-    public function set($key, $value, $ttl = null)
+    public function set($key, $value, $ttl = null): bool
     {
         //		$ttl = $ttl ? $ttl : 480;
         if (!$this->global_cache instanceof ilGlobalCacheService || !$this->isActive()) {

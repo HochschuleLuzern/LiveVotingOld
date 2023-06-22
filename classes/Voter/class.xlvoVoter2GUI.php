@@ -148,7 +148,7 @@ class xlvoVoter2GUI extends xlvoGUI
         } catch (xlvoVoterException $e) {
             $param_manager->setPin('');
 
-            ilUtil::sendFailure($this->txt('msg_validation_error_pin_' . $e->getCode()));
+            ilLiveVotingPlugin::sendFailure($this->txt('msg_validation_error_pin_' . $e->getCode()));
 
             $this->index();
         }

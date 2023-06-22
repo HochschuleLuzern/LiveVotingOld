@@ -94,7 +94,7 @@ class xlvoPlayerGUI extends xlvoGUI
         try {
             $this->manager->prepareStart();
         } catch (xlvoPlayerException $e) {
-            ilUtil::sendFailure($this->txt('msg_no_start_' . $e->getCode()), true);
+            ilLiveVotingPlugin::sendFailure($this->txt('msg_no_start_' . $e->getCode()), true);
 
             return;
         }

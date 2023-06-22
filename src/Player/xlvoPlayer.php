@@ -38,7 +38,7 @@ class xlvoPlayer extends CachingActiveRecord
     /**
      * @return string
      */
-    public function getConnectorContainerName()
+    public function getConnectorContainerName(): string
     {
         return self::TABLE_NAME;
     }
@@ -48,7 +48,7 @@ class xlvoPlayer extends CachingActiveRecord
      * @return string
      * @deprecated
      */
-    public static function returnDbTableName()
+    public static function returnDbTableName(): string
     {
         return self::TABLE_NAME;
     }
@@ -296,7 +296,8 @@ class xlvoPlayer extends CachingActiveRecord
             'status'    => xlvoVote::STAT_ACTIVE,
             'round_id'  => $this->getRoundId()
         ))->orderBy('last_update', 'DESC')->getArray('last_update', 'last_update');
-        $last_update = array_shift(array_values($last_update));
+        $last_update_values = array_values($last_update);
+        $last_update = array_shift($last_update_values);
         $obj->last_update = (int) $last_update;
         $obj->attendees = self::plugin()->translate("start_online", "", [(int) xlvoVoter::countVoters($this->getId())]);
         $obj->qtype = $this->getQuestionTypeClassName();
