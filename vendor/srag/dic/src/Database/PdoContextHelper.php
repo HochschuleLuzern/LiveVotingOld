@@ -6,6 +6,7 @@ use ilDBPdo;
 use ilDBPdoInterface;
 use PDO;
 use srag\DIC\LiveVoting\Exception\DICException;
+use ilDBConstants;
 
 /**
  * Class PdoContextHelper
@@ -48,8 +49,25 @@ final class PdoContextHelper extends ilDBPdo
     /**
      * @inheritDoc
      */
-    public function initHelpers()
+    public function initHelpers(): void
     {
 
+    }
+
+    public function nextId(string $table_name) : int
+    {
+        return $this->db->nextId($table_name);
+    }
+
+    public function migrateTableToEngine(string $table_name, string $engine = ilDBConstants::MYSQL_ENGINE_INNODB) : bool
+    {
+        return false;
+    }
+
+    public function migrateTableCollation(
+        string $table_name,
+        string $collation = ilDBConstants::MYSQL_COLLATION_UTF8MB4
+    ) : bool {
+        return false;
     }
 }

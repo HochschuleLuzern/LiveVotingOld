@@ -12,7 +12,7 @@ class ComposerStaticInitf5122d14f0f45dac789bfb6428ff8994
             'srag\\RemovePluginDataConfirm\\LiveVoting\\' => 40,
             'srag\\LibraryLanguageInstaller\\LiveVoting\\' => 41,
             'srag\\LibrariesNamespaceChanger\\' => 31,
-            'srag\\DIC\\' => 9,
+            'srag\\DIC\\LiveVoting\\' => 20,
             'srag\\CustomInputGUIs\\LiveVoting\\' => 32,
             'srag\\ActiveRecordConfig\\LiveVoting\\' => 35,
         ),
@@ -43,7 +43,7 @@ class ComposerStaticInitf5122d14f0f45dac789bfb6428ff8994
         array (
             0 => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src',
         ),
-        'srag\\DIC\\' => 
+        'srag\\DIC\\LiveVoting\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
@@ -70,6 +70,7 @@ class ComposerStaticInitf5122d14f0f45dac789bfb6428ff8994
     );
 
     public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Endroid\\QrCode\\Bundle\\Controller\\QrCodeController' => __DIR__ . '/..' . '/endroid/qrcode/src/Bundle/Controller/QrCodeController.php',
         'Endroid\\QrCode\\Bundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/endroid/qrcode/src/Bundle/DependencyInjection/Configuration.php',
         'Endroid\\QrCode\\Bundle\\DependencyInjection\\EndroidQrCodeExtension' => __DIR__ . '/..' . '/endroid/qrcode/src/Bundle/DependencyInjection/EndroidQrCodeExtension.php',
@@ -100,11 +101,9 @@ class ComposerStaticInitf5122d14f0f45dac789bfb6428ff8994
         'LiveVoting\\Context\\InitialisationManager' => __DIR__ . '/../..' . '/src/Context/InitialisationManager.php',
         'LiveVoting\\Context\\Initialisation\\Version\\v6\\GlobalTemplate' => __DIR__ . '/../..' . '/src/Context/Initialisation/Version/v6/GlobalTemplate.php',
         'LiveVoting\\Context\\Initialisation\\Version\\v6\\xlvoBasicInitialisation' => __DIR__ . '/../..' . '/src/Context/Initialisation/Version/v6/xlvoBasicInitialisation.php',
-        'LiveVoting\\Context\\Initialisation\\Version\\v6\\xlvoSkin' => __DIR__ . '/../..' . '/src/Context/Initialisation/Version/v6/xlvoStyleDefinition.php',
         'LiveVoting\\Context\\Initialisation\\Version\\v6\\xlvoStyleDefinition' => __DIR__ . '/../..' . '/src/Context/Initialisation/Version/v6/xlvoStyleDefinition.php',
         'LiveVoting\\Context\\Initialisation\\Version\\v7\\GlobalTemplate' => __DIR__ . '/../..' . '/src/Context/Initialisation/Version/v7/GlobalTemplate.php',
         'LiveVoting\\Context\\Initialisation\\Version\\v7\\xlvoBasicInitialisation' => __DIR__ . '/../..' . '/src/Context/Initialisation/Version/v7/xlvoBasicInitialisation.php',
-        'LiveVoting\\Context\\Initialisation\\Version\\v7\\xlvoSkin' => __DIR__ . '/../..' . '/src/Context/Initialisation/Version/v7/xlvoStyleDefinition.php',
         'LiveVoting\\Context\\Initialisation\\Version\\v7\\xlvoStyleDefinition' => __DIR__ . '/../..' . '/src/Context/Initialisation/Version/v7/xlvoStyleDefinition.php',
         'LiveVoting\\Context\\Param\\ParamManager' => __DIR__ . '/../..' . '/src/Context/Param/ParamManager.php',
         'LiveVoting\\Context\\xlvoContext' => __DIR__ . '/../..' . '/src/Context/xlvoContext.php',
@@ -180,8 +179,6 @@ class ComposerStaticInitf5122d14f0f45dac789bfb6428ff8994
         'LiveVoting\\User\\xlvoParticipant' => __DIR__ . '/../..' . '/src/User/xlvoParticipant.php',
         'LiveVoting\\User\\xlvoParticipants' => __DIR__ . '/../..' . '/src/User/xlvoParticipants.php',
         'LiveVoting\\User\\xlvoUser' => __DIR__ . '/../..' . '/src/User/xlvoUser.php',
-        'LiveVoting\\User\\xlvoVoteHistoryObject' => __DIR__ . '/../..' . '/src/Vote/xlvoVoteHistoryObject.php',
-        'LiveVoting\\User\\xlvoVoteHistoryTableGUI' => __DIR__ . '/../..' . '/src/Vote/xlvoVoteHistoryTableGUI.php',
         'LiveVoting\\Utils\\LiveVotingTrait' => __DIR__ . '/../..' . '/src/Utils/LiveVotingTrait.php',
         'LiveVoting\\Vote\\xlvoVote' => __DIR__ . '/../..' . '/src/Vote/xlvoVote.php',
         'LiveVoting\\Vote\\xlvoVoteOld' => __DIR__ . '/../..' . '/src/Vote/xlvoVoteOld.php',
