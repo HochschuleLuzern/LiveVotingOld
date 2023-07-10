@@ -511,9 +511,7 @@ foreach (\LiveVoting\Voting\xlvoVoting::where([ "answer_field" => NULL ])->get()
 <?php
 $form_element = new \ilTextInputGUI();
 foreach (\LiveVoting\Option\xlvoOption::get() as $option) {
-    if($option->getText() !== null) {
-        $option->setText($form_element->stripSlashesAddSpaceFallback($option->getText()));
-        $option->store();
-    }
+    $option->setText($form_element->stripSlashesAddSpaceFallback($option->getText()));
+    $option->store();
 }
 ?>
