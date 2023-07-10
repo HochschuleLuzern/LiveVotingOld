@@ -49,13 +49,13 @@ class xlvoOption extends CachingActiveRecord
      * @db_fieldtype        text
      * @db_length           256
      */
-    protected $text;
+    protected ?string $text;
 
 
     /**
      * @return string
      */
-    public function getText()
+    public function getText() : ?string
     {
         return $this->text;
     }
