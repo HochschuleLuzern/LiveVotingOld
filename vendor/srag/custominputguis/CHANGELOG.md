@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.44.0]
+- Clean up
+
+## [0.43.2]
+- Update html2canvas
+
 ## [0.43.1]
 - Not use GeneratePluginReadme
 

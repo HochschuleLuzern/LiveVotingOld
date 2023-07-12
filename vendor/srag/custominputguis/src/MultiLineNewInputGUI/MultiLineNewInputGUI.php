@@ -113,10 +113,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
             foreach ($inputs as $org_post_var => $input) {
                 $b_value = $_POST[$input->getPostVar()];
 
-               // $_POST[$input->getPostVar()] = $_POST[$this->getPostVar()][$i][$org_post_var];
-
-                $input->setRequestParam($input->getPostVar(), $_POST[$this->getPostVar()][$i][$org_post_var]);
-
+                $_POST[$input->getPostVar()] = $_POST[$this->getPostVar()][$i][$org_post_var];
 
                 /*if ($this->getRequired()) {
                    $input->setRequired(true);
@@ -126,7 +123,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
                     $ok = false;
                 }
 
-               // $_POST[$input->getPostVar()] = $b_value;
+                $_POST[$input->getPostVar()] = $b_value;
             }
         }
 
@@ -160,7 +157,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
 
                     $org_post_var = $input->getPostVar();
 
-                    Items::setValueToItem($input, array_key_exists($org_post_var,$value) ? $value[$org_post_var] : '');
+                    Items::setValueToItem($input, $value[$org_post_var]);
 
                     $post_var = $this->getPostVar() . "[" . $i . "][";
                     if (strpos($org_post_var, "[") !== false) {

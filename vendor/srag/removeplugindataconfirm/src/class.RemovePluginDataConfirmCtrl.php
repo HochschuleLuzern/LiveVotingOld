@@ -200,7 +200,7 @@ class RemovePluginDataConfirmCtrl
     {
         self::setUninstallRemovesData(false);
 
-        ilLiveVotingPlugin::sendInfo($this->txt("msg_kept_data"), true);
+        ilUtil::sendInfo($this->txt("msg_kept_data"), true);
 
         $this->redirectToPlugins("uninstallPlugin");
     }
@@ -213,7 +213,7 @@ class RemovePluginDataConfirmCtrl
     {
         self::setUninstallRemovesData(true);
 
-        ilLiveVotingPlugin::sendInfo($this->txt("msg_removed_data"), true);
+        ilUtil::sendInfo($this->txt("msg_removed_data"), true);
 
         $this->redirectToPlugins("uninstallPlugin");
     }
