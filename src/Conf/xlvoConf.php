@@ -257,7 +257,8 @@ class xlvoConf extends CachingActiveRecord
      */
     public static function getFullApiURL()
     {
-        return self::getBaseVoteURL() . ltrim(self::API_URL, "./");
+        //return self::getBaseVoteURL() . ltrim(self::API_URL, "./");
+        return "ilias.php";
     }
 
 

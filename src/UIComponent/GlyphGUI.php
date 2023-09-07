@@ -27,9 +27,11 @@ class GlyphGUI extends ilGlyphGUI
     {
         if ($a_glyph == 'remove') {
             self::$map[$a_glyph]['class'] = 'glyphicon glyphicon-' . $a_glyph;
+            self::$map[$a_glyph]['txt'] = $a_text;
         }
         if (!isset(self::$map[$a_glyph])) {
             self::$map[$a_glyph]['class'] = 'glyphicon glyphicon-' . $a_glyph;
+            self::$map[$a_glyph]['txt'] = $a_text;
         }
 
         return parent::get($a_glyph, $a_text) . ' ';

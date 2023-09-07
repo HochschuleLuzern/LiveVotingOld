@@ -7,7 +7,7 @@ use arException;
 use Exception;
 use ilObjectTypeMismatchException;
 use ilRTE;
-use ilUtil;
+use ilLegacyFormElementsUtil;
 use LiveVoting\Cache\CachingActiveRecord;
 use LiveVoting\Option\xlvoOption;
 use LiveVoting\QuestionTypes\FreeInput\xlvoFreeInputSubFormGUI;
@@ -427,6 +427,7 @@ class xlvoVoting extends CachingActiveRecord
         $this->setVotingOptions($xlvoOptions);
         $first_voting_option = xlvoOption::where(array('voting_id' => $this->id))->orderBy('position')->first();
         $this->setFirstVotingOption($first_voting_option);
+        parent::afterObjectLoad();
     }
 
 
@@ -516,7 +517,7 @@ class xlvoVoting extends CachingActiveRecord
      */
     public function getQuestionForPresentation()
     {
-        return ilUtil::prepareTextareaOutput($this->getQuestionForEditor(), true);
+        return ilLegacyFormElementsUtil::prepareTextareaOutput($this->getQuestionForEditor(), true);
     }
 
 

@@ -375,6 +375,7 @@ class xlvoVotingGUI
             if ($xlvoVoting->getObjId() == $this->getObjId()) {
                 ilLiveVotingPlugin::sendQuestion($this->txt('delete_confirm'), true);
                 $confirm = new ilConfirmationGUI();
+                $confirm->setHeaderText($this->txt("voting_delete"));
                 $confirm->addItem(self::IDENTIFIER, $xlvoVoting->getId(), $xlvoVoting->getTitle());
                 $confirm->setFormAction(self::dic()->ctrl()->getFormAction($this));
                 $confirm->setCancel($this->txt('cancel'), self::CMD_CANCEL);

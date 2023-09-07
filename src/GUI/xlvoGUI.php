@@ -70,10 +70,10 @@ abstract class xlvoGUI
         }
         if ($this->is_api_call) {
             if (self::version()->is6()) {
-                self::dic()->ui()->mainTemplate()->fillJavaScriptFiles();
-                self::dic()->ui()->mainTemplate()->fillCssFiles();
-                self::dic()->ui()->mainTemplate()->fillOnLoadCode();
-                self::dic()->ui()->mainTemplate()->printToStdout(false, false, true);
+  //              self::dic()->ui()->mainTemplate()->fillJavaScriptFiles();
+  //              self::dic()->ui()->mainTemplate()->fillCssFiles();
+  //              self::dic()->ui()->mainTemplate()->fillOnLoadCode();
+                self::dic()->ui()->mainTemplate()->printToStdout("DEFAULT", false, true);
             } else {
                 self::dic()->ui()->mainTemplate()->show(false);
             }

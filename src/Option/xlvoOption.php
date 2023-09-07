@@ -6,6 +6,8 @@ use ilRTE;
 use ilUtil;
 use LiveVoting\Cache\CachingActiveRecord;
 use stdClass;
+use arFactory;
+use ilLegacyFormElementsUtil;
 
 /**
  * Class xlvoOption
@@ -66,7 +68,7 @@ class xlvoOption extends CachingActiveRecord
      */
     public function getTextForPresentation()
     {
-        return ilUtil::prepareTextareaOutput($this->getTextForEditor(), true);
+        return ilLegacyFormElementsUtil::prepareTextareaOutput($this->getTextForEditor(), true);
     }
 
 
@@ -268,5 +270,24 @@ class xlvoOption extends CachingActiveRecord
         $class->Position = (int) $this->getPosition();
 
         return $class;
+    }
+
+    /**
+     * @param       $primary_key
+     * @description Returns an existing Object with given primary-key or a new Instance with given primary-key set but not yet created
+     * @return \ActiveRecord|object|void
+     */
+    public static function findOrGetInstance($primary_key, array $add_constructor_args = array())
+    {
+        if(!isset($primary_key) || $primary_key == "" || $primary_key == "0"){
+            $class_name = static::class;
+            $obj = arFactory::getInstance($class_name, 0, $add_constructor_args);
+            $obj->setPrimaryFieldValue($primary_key);
+            $obj->is_new = true;
+        }
+        else{
+            $obj = parent::findOrGetInstance($primary_key, $add_constructor_args);
+        }
+        return $obj;
     }
 }

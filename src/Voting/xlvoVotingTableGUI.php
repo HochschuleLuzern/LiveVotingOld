@@ -10,6 +10,7 @@ use ilObjLiveVotingAccess;
 use ilSelectInputGUI;
 use ilTable2GUI;
 use ilUtil;
+use ilLegacyFormElementsUtil;
 use LiveVoting\Js\xlvoJs;
 use LiveVoting\QuestionTypes\xlvoQuestionTypes;
 use LiveVoting\Utils\LiveVotingTrait;

@@ -46,7 +46,7 @@ class xlvoParticipants
      */
     public static function getInstance($obj_id)
     {
-        if (!self::$instances[$obj_id]) {
+        if (!isset(self::$instances[$obj_id])) {
             self::$instances[$obj_id] = new xlvoParticipants($obj_id);
         }
 
